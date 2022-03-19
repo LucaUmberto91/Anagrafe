@@ -1,6 +1,28 @@
 package com.exercise01.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity(name = "peopleClass")
+@Table(name = "people")
 public class People {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "surname")
+	private String surname;
+	
+	@Column(name = "idRecord")
+	private int idRecord;
 	
 	private Integer age;
 	private String country;
@@ -38,6 +60,44 @@ public class People {
 		this.country = country;
 		this.edu = edu;
 		this.sex = sex;
+	}
+	public People(Integer age, String country, String edu, String sex,String name,String surname,int idRecord) {
+		super();
+		this.age = age;
+		this.country = country;
+		this.edu = edu;
+		this.sex = sex;
+		this.name = name;
+		this.surname = surname;
+		this.idRecord = idRecord;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSurname() {
+		return surname;
+	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public int getIdRecord() {
+		return idRecord;
+	}
+	public void setIdRecord(int idRecord) {
+		this.idRecord = idRecord;
+	}
+	public People() {
+		super();
 	}
 	
 	

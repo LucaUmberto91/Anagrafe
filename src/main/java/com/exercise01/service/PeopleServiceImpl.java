@@ -24,6 +24,14 @@ public class PeopleServiceImpl implements PeopleService{
 	SexesRepo sexesRepo;
 	
 	@Override
+	public People getPeopleImpl(Records record,String name,String surname) {
+		Countries country = countriesRepo.findById(record.getCountryId());
+		EduLevel edu = eduRepo.findById(record.getEducationId());
+		Sexes sex = sexesRepo.findById(record.getSexId());
+		People people = new People(record.getAge(),country.getName(),edu.getName(),sex.getName(),name,surname,record.getId());
+		return people;
+	}
+	@Override
 	public People getPeopleImpl(Records record) {
 		Countries country = countriesRepo.findById(record.getCountryId());
 		EduLevel edu = eduRepo.findById(record.getEducationId());
