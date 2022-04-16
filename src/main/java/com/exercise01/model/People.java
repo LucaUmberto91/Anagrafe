@@ -99,6 +99,9 @@ public class People {
 	public People() {
 		super();
 	}
+	public People(int age2, String name2, String name3, String name4, String name5, String surname2, Integer id2) {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	

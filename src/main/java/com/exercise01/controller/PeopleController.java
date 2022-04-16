@@ -17,7 +17,6 @@ import com.exercise01.model.Records;
 import com.exercise01.repository.ArchiveRepo;
 import com.exercise01.repository.CountriesRepo;
 import com.exercise01.repository.EduLevelRepo;
-import com.exercise01.repository.PeopleRepo;
 import com.exercise01.repository.RecordsRepo;
 import com.exercise01.repository.SexesRepo;
 import com.exercise01.service.PeopleService;
@@ -37,8 +36,6 @@ public class PeopleController {
 	SexesRepo sexesRepo;
 	@Autowired
 	ArchiveRepo archiveRepo;
-	@Autowired
-	PeopleRepo peopleRepo;
 	@Autowired
 	PeopleService peopleService;
 	@Autowired
@@ -62,7 +59,6 @@ public class PeopleController {
 
 			People p = peopleService.getPeopleImpl(record, name, surname);
 			record.setPeople(p);
-			peopleRepo.save(p);
 
 			// Exercise for Java 8 Stream
 //			List<String> listaStringPeople = Arrays.asList("Pippo", "Ciccio", "Alfonso");
@@ -78,14 +74,34 @@ public class PeopleController {
 	}
 
 	@GetMapping(path = "/find")
-	public @ResponseBody Records find(@RequestParam(value = "id") int idRecord, @RequestBody Admin admin) {
+	public @ResponseBody Object find(@RequestParam(value = "id") int idRecord, @RequestBody Admin admin) {
 		Admin adminC = adminRepo.findByUsernameAndPassword(admin.getUsername(), admin.getPassword());
 		if (adminC != null) {
 			Records record = recordsRepo.findById(idRecord);
+			if (record != null) {
+				People p = peopleService.getPeopleImpl(record);
+				record.setPeople(p);
+				return record;
+			} else
+				return "Element with id " + idRecord + " not present";
 
-			return record;
 		} else
-			return null;
+			return "ACCESS DENIED!";
+	}
+	
+	@GetMapping(path = "/remove")
+	public @ResponseBody Object remove(@RequestParam(value = "id") int idRecord, @RequestBody Admin admin) {
+		Admin adminC = adminRepo.findByUsernameAndPassword(admin.getUsername(), admin.getPassword());
+		if (adminC != null) {
+			Records record = recordsRepo.findById(idRecord);
+			if (record != null) {
+				recordsRepo.delete(record);
+				return "Element with id "+ idRecord +" deleted!"; 
+			} else
+				return "Element with id " + idRecord + " not present";
+
+		} else
+			return "ACCESS DENIED!";
 	}
 
 	@GetMapping(path = "/findAll/Anonymous")
@@ -103,15 +119,5 @@ public class PeopleController {
 
 	}
 
-	@GetMapping(path = "/findAllPeople")
-	public @ResponseBody Iterable<People> findAll(@RequestBody Admin admin) {
-		Admin adminC = adminRepo.findByUsernameAndPassword(admin.getUsername(), admin.getPassword());
-		if (adminC != null) {
-			Iterable<People> peoples = peopleRepo.findAll();
-			return peoples;
-		} else
-			return null;
-
-	}
 
 }

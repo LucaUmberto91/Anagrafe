@@ -25,7 +25,7 @@ public class AdminController {
 		
 		Admin admin = new Admin(username,password,nickname);
 		adminRepo.save(admin);
-		return "Utente "+nickname+" User now online!";
+		return "Hello! "+nickname+" , User registered successfully";
 	}
 	
 	@GetMapping(path = "/login")

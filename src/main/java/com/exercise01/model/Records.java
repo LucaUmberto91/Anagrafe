@@ -81,6 +81,22 @@ public class Records {
 		this.people = people;
 	}
 
+	public Records(Integer id, int age, int educationId, int countryId, int sexId, People people) {
+		super();
+		this.id = id;
+		this.age = age;
+		this.educationId = educationId;
+		this.countryId = countryId;
+		this.sexId = sexId;
+		this.people = people;
+	}
+
+	public Records() {
+		super();
+	}
+	
+	
+
 	
 	
 }
