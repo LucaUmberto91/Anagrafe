@@ -10,6 +10,7 @@ import com.exercise01.model.Records;
 import com.exercise01.model.Sexes;
 import com.exercise01.repository.CountriesRepo;
 import com.exercise01.repository.EduLevelRepo;
+import com.exercise01.repository.PeopleRepo;
 import com.exercise01.repository.SexesRepo;
 
 @Service
@@ -22,6 +23,8 @@ public class PeopleServiceImpl implements PeopleService{
 	EduLevelRepo eduRepo;
 	@Autowired
 	SexesRepo sexesRepo;
+	@Autowired
+	PeopleRepo peopleRepo;
 	
 	@Override
 	public People getPeopleImpl(Records record,String name,String surname) {
@@ -29,6 +32,14 @@ public class PeopleServiceImpl implements PeopleService{
 		EduLevel edu = eduRepo.findById(record.getEducationId());
 		Sexes sex = sexesRepo.findById(record.getSexId());
 		People people = new People(record.getAge(),country.getName(),edu.getName(),sex.getName(),name,surname,record.getId());
+		return people;
+	}
+	
+	
+	@Override
+	public People getPeopleImpl(String name, String surname,String sex,String country, Integer age) {
+		People people = new People(age,country,sex,name,surname);
+		peopleRepo.save(people);
 		return people;
 	}
 	@Override

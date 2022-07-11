@@ -7,4 +7,5 @@ public interface PeopleService {
 
 	public People getPeopleImpl(Records record,String name, String surname);
 	public People getPeopleImpl(Records record);
+	public People getPeopleImpl(String name, String surname,String sex,String country, Integer age);
 }

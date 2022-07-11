@@ -24,9 +24,14 @@ public class People {
 	@Column(name = "idRecord")
 	private int idRecord;
 	
+	@Column(name = "age")
 	private Integer age;
+	
+	@Column(name = "country")
 	private String country;
 	private String edu;
+	
+	@Column(name = "sex")
 	private String sex;
 	
 	
@@ -60,6 +65,15 @@ public class People {
 		this.country = country;
 		this.edu = edu;
 		this.sex = sex;
+	}
+	
+	public People(Integer age, String country, String sex, String name, String surname) {
+		super();
+		this.age = age;
+		this.country = country;
+		this.name = name;
+		this.sex = sex;
+		this.surname = surname;
 	}
 	public People(Integer age, String country, String edu, String sex,String name,String surname,int idRecord) {
 		super();
