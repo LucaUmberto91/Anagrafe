@@ -80,7 +80,7 @@ public class AdminController {
 		if (verify != null)
 			return new ModelAndView("welcome", "datiCliente", admin);
 		else {
-			System.out.println("Utente non trovato, registrati!");
+			System.out.println("User not found, register now!");
 			return new ModelAndView("redirect:/admin/nuovoView");
 		}
 			
