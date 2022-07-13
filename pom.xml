@@ -10,8 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Exercise01</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>demo_anagrafica</artifactId>
+	<packaging>war</packaging>
+	<version>1.1</version>
 	<name>Exercise01</name>
 	<description>Exercise01</description>
 	<properties>
@@ -79,6 +80,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				
 			</plugin>
 		</plugins>
 	</build>
