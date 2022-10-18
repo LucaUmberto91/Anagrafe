@@ -95,6 +95,7 @@ public class PeopleController {
 
 			People p = peopleService.getPeopleImpl(record, people.getName(), people.getSurname());
 			record.setPeople(p);
+			peopleRepo.save(p);
 
 			// Exercise for Java 8 Stream
 //			List<String> listaStringPeople = Arrays.asList("Pippo", "Ciccio", "Alfonso");

@@ -50,4 +50,16 @@ public class PeopleServiceImpl implements PeopleService{
 		People people = new People(record.getAge(),country.getName(),edu.getName(),sex.getName());
 		return people;
 	}
+
+	@Override
+	public Iterable<People> getPeopleImpl() {
+		Iterable<People> people = peopleRepo.findAll();
+		return people;
+	}
+
+	@Override
+	public Iterable<People> getPeopleImpl(String surname) {
+		Iterable<People> people = peopleRepo.findAllBySurname(surname);
+		return people;
+	}
 }
